@@ -29,3 +29,10 @@ jobs:
       run: ./TodoSynchronizer.CLI/bin/Release/net6.0/TodoSynchronizer.CLI -canvastoken ${{ secrets.CANVAS_TOKEN }} -graphtokenfile graphtoken.asc -configfile config.yaml -graphtokenkey ${{ secrets.KEY }}
     - name: keep workflow alive
       uses: gautamkrishnar/keepalive-workflow@master
+    - name: Delete workflow runs
+      uses: Mattraks/delete-workflow-runs@v2
+      with:
+        token: ${{ github.token }}
+        repository: ${{ github.repository }}
+        retain_days: 0
+        keep_minimum_runs: 0
